@@ -4,6 +4,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoDatabase;
 import pl.sda.mongo.mongodb.MongoClientConnectivity;
 
 public class ShopApp {
@@ -12,13 +13,10 @@ public class ShopApp {
         MongoClientConnectivity mongoClientConnectivity = new MongoClientConnectivity();
         mongoClientConnectivity.open();
 
+        MongoClient mongoClient = mongoClientConnectivity.getMongoClient();
+        MongoDatabase library = mongoClient.getDatabase("library");
+
+
         mongoClientConnectivity.close();
-
-
-
-
-
-
-        mongoClient.close();
     }
 }

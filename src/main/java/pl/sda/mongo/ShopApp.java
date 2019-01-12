@@ -1,9 +1,6 @@
 package pl.sda.mongo;
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
+import com.mongodb.*;
 import com.mongodb.client.MongoDatabase;
 import pl.sda.mongo.mongodb.MongoClientConnectivity;
 
@@ -16,6 +13,10 @@ public class ShopApp {
         MongoClient mongoClient = mongoClientConnectivity.getMongoClient();
         MongoDatabase library = mongoClient.getDatabase("library");
 
+        library.createCollection("books");
+
+        library.listCollectionNames()
+                .forEach((Block<? super String>)System.out::println);
 
         mongoClientConnectivity.close();
     }
